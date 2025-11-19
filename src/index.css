@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+	height: 100%;
+}
+
+body {
+	@apply bg-cleanWhite text-forest antialiased;
+}
+
+.btn {
+	@apply inline-flex items-center justify-center rounded-lg bg-freshLime px-6 py-3 text-base text-cleanWhite font-medium shadow-sm transition-colors hover:bg-forest focus:outline-none focus:ring-2 focus:ring-tealAccent focus:ring-offset-2 disabled:opacity-50;
+}
+
+.btn-outline {
+	@apply inline-flex items-center justify-center rounded-lg border border-forest/30 px-4 py-2 text-base font-medium text-forest transition-colors hover:border-freshLime hover:text-freshLime focus:outline-none focus:ring-2 focus:ring-forest/30;
+}
+
+.card {
+	@apply bg-cleanWhite rounded-lg shadow border border-forest/10;
+}
+
+input::placeholder,
+textarea::placeholder {
+	background-color: white !important;
+	color: black !important;
+}
+
+
