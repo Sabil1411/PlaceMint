@@ -3,6 +3,10 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth'
 import { useUiStore } from '../store/ui'
 import logo from '../assets/logo.png'
+import facebookLogo from '../assets/facebook.png'
+import instagramLogo from '../assets/instagram.png'
+import linkedinLogo from '../assets/linkedin.png'
+import twitterLogo from '../assets/x_logo.png'	
 
 export default function Layout({ children }) {
 	const navigate = useNavigate()
@@ -127,16 +131,16 @@ export default function Layout({ children }) {
 						<div className="font-semibold mb-2">Follow us</div>
 						<div className="flex gap-3">
 							<a className="transition-colors hover:text-tealAccent" href="#" aria-label="Instagram">
-								<img src="/src/assets/instagram.png" alt="Instagram" style={{height:'24px',width:'24px',display:'inline'}} />
+								<img src={instagramLogo} alt="Instagram" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
 							<a className="transition-colors hover:text-tealAccent" href="#" aria-label="Facebook">
-								<img src="/src/assets/facebook.png" alt="Facebook" style={{height:'24px',width:'24px',display:'inline'}} />
+								<img src={facebookLogo}	 alt="Facebook" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
 							<a className="transition-colors hover:text-tealAccent" href="https://www.linkedin.com/in/pranav-joshi-485a64289/" aria-label="LinkedIn">
-								<img src="/src/assets/linkedin.png" alt="LinkedIn" style={{height:'24px',width:'24px',display:'inline'}} />
+								<img src={linkedinLogo} alt="LinkedIn" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
 							<a className="transition-colors hover:text-tealAccent" href="#" aria-label="Twitter">
-								<img src="/src/assets/x_logo.png" alt="Twitter" style={{height:'24px',width:'24px',display:'inline'}} />
+								<img src={twitterLogo} alt="Twitter" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
 						</div>
 					</div>
