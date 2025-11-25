@@ -28,4 +28,16 @@ textarea::placeholder {
 	color: black !important;
 }
 
+.input-field {
+	@apply w-full rounded-lg border border-forest/20 bg-cleanWhite px-3 py-2 text-forest placeholder:text-forest/60 focus:border-freshLime focus:ring-1 focus:ring-freshLime focus:outline-none;
+}
+
+select.input-field {
+	@apply bg-cleanWhite;
+}
+
+textarea.input-field {
+	@apply min-h-[120px];
+}
+
 

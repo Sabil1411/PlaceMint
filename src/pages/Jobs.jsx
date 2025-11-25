@@ -23,11 +23,11 @@ export default function Jobs() {
 						<p className="text-sm text-gray-600">Publish openings directly for students based on company requirements.</p>
 					</div>
 					<div className="grid md:grid-cols-2 gap-3">
-						<input className="border rounded p-2" placeholder="Job title" value={jobForm.title} onChange={e=>setJobForm({...jobForm, title:e.target.value})} />
-						<input className="border rounded p-2" placeholder="Company" value={jobForm.company} onChange={e=>setJobForm({...jobForm, company:e.target.value})} />
-						<input className="border rounded p-2" placeholder="Department" value={jobForm.dept} onChange={e=>setJobForm({...jobForm, dept:e.target.value})} />
-						<input className="border rounded p-2" placeholder="Stipend / CTC" value={jobForm.stipend} onChange={e=>setJobForm({...jobForm, stipend:e.target.value})} />
-						<input className="border rounded p-2 md:col-span-2" placeholder="Skills (comma separated)" value={jobForm.skills} onChange={e=>setJobForm({...jobForm, skills:e.target.value})} />
+						<input className="input-field" placeholder="Job title" value={jobForm.title} onChange={e=>setJobForm({...jobForm, title:e.target.value})} />
+						<input className="input-field" placeholder="Company" value={jobForm.company} onChange={e=>setJobForm({...jobForm, company:e.target.value})} />
+						<input className="input-field" placeholder="Department" value={jobForm.dept} onChange={e=>setJobForm({...jobForm, dept:e.target.value})} />
+						<input className="input-field" placeholder="Stipend / CTC" value={jobForm.stipend} onChange={e=>setJobForm({...jobForm, stipend:e.target.value})} />
+						<input className="input-field md:col-span-2" placeholder="Skills (comma separated)" value={jobForm.skills} onChange={e=>setJobForm({...jobForm, skills:e.target.value})} />
 						<div className="md:col-span-2">
 							<button
 								className="btn"
@@ -38,7 +38,7 @@ export default function Jobs() {
 									}
 									const skills = jobForm.skills.split(',').map(s=>s.trim()).filter(Boolean)
 									addJob({ title: jobForm.title, company: jobForm.company, dept: jobForm.dept, stipend: Number(jobForm.stipend)||0, skills })
-									setJobForm({ title:'', company:'', dept:'CSE', stipend:'', skills:'' })
+									setJobForm({ title:'', company:'', dept:'', stipend:'', skills:'' })
 									window.alert('Job posted successfully')
 								}}
 							>
@@ -49,7 +49,7 @@ export default function Jobs() {
 				</div>
 			)}
 			<div className="flex items-center gap-2">
-				<input className="border rounded p-2 flex-1" placeholder="Search jobs" value={filter} onChange={e=>setFilter(e.target.value)} />
+				<input className="input-field" placeholder="Search jobs" value={filter} onChange={e=>setFilter(e.target.value)} />
 			</div>
 			{user?.role === 'student' && !studentProfile && (
 				<div className="bg-yellow-50 border border-yellow-200 rounded p-4">

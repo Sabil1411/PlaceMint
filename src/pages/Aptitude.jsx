@@ -72,12 +72,12 @@ export default function Aptitude() {
                 <form onSubmit={handleCreateTest} className="border rounded p-4 space-y-3">
                     <div className="font-semibold">Create Test</div>
                     <div className="grid md:grid-cols-6 gap-3">
-                        <input className="input" placeholder="Title" value={newTest.title} onChange={e=>setNewTest(v=>({...v, title: e.target.value}))} />
-                        <input className="input" placeholder="Description" value={newTest.description} onChange={e=>setNewTest(v=>({...v, description: e.target.value}))} />
-                        <input className="input" type="datetime-local" value={newTest.startAt} onChange={e=>setNewTest(v=>({...v, startAt: e.target.value}))} />
-                        <input className="input" type="number" min="10" max="240" value={newTest.durationMinutes} onChange={e=>setNewTest(v=>({...v, durationMinutes: e.target.value}))} />
+                        <input className="input-field" placeholder="Title" value={newTest.title} onChange={e=>setNewTest(v=>({...v, title: e.target.value}))} />
+                        <input className="input-field" placeholder="Description" value={newTest.description} onChange={e=>setNewTest(v=>({...v, description: e.target.value}))} />
+                        <input className="input-field" type="datetime-local" value={newTest.startAt} onChange={e=>setNewTest(v=>({...v, startAt: e.target.value}))} />
+                        <input className="input-field" type="number" min="10" max="240" value={newTest.durationMinutes} onChange={e=>setNewTest(v=>({...v, durationMinutes: e.target.value}))} />
                         <label className="inline-flex items-center gap-2 text-sm text-gray-700"><input type="checkbox" checked={newTest.randomize} onChange={e=>setNewTest(v=>({...v, randomize: e.target.checked}))} /> Randomize</label>
-                        <select className="input" value={newTest.navigationMode} onChange={e=>setNewTest(v=>({...v, navigationMode: e.target.value}))}>
+                        <select className="input-field" value={newTest.navigationMode} onChange={e=>setNewTest(v=>({...v, navigationMode: e.target.value}))}>
                             <option value="free">Free Navigation</option>
                             <option value="sequential">Sequential</option>
                         </select>
@@ -90,20 +90,20 @@ export default function Aptitude() {
                 <div className="border rounded p-4 space-y-3">
                     <div className="font-semibold">Add Questions</div>
                     <div className="grid md:grid-cols-4 gap-3 items-end">
-                        <select className="input" value={selectedTestId} onChange={e=>setSelectedTestId(e.target.value)}>
+                        <select className="input-field" value={selectedTestId} onChange={e=>setSelectedTestId(e.target.value)}>
                             <option value="">Select Test</option>
                             {aptitudeTests.map(t=> <option key={t.id} value={t.id}>{t.title}</option>)}
                         </select>
-                        <input className="input md:col-span-3" placeholder="Question text" value={newQuestion.text} onChange={e=>setNewQuestion(v=>({...v, text: e.target.value}))} />
+                        <input className="input-field md:col-span-3" placeholder="Question text" value={newQuestion.text} onChange={e=>setNewQuestion(v=>({...v, text: e.target.value}))} />
                     </div>
                     <div className="grid md:grid-cols-4 gap-3">
                         {newQuestion.options.map((opt, i)=> (
-                            <input key={i} className="input" placeholder={`Option ${i+1}`} value={opt} onChange={e=>setNewQuestion(v=>{ const options=[...v.options]; options[i]=e.target.value; return { ...v, options } })} />
+                            <input key={i} className="input-field" placeholder={`Option ${i+1}`} value={opt} onChange={e=>setNewQuestion(v=>{ const options=[...v.options]; options[i]=e.target.value; return { ...v, options } })} />
                         ))}
                     </div>
                     <div className="flex items-center gap-3">
                         <label className="text-sm text-gray-700">Correct Option</label>
-                        <select className="input w-32" value={newQuestion.correctIndex} onChange={e=>setNewQuestion(v=>({...v, correctIndex: Number(e.target.value)}))}>
+                        <select className="input-field w-32" value={newQuestion.correctIndex} onChange={e=>setNewQuestion(v=>({...v, correctIndex: Number(e.target.value)}))}>
                             {[0,1,2,3].map(i=> <option key={i} value={i}>{i+1}</option>)}
                         </select>
                         <button className="btn" onClick={handleAddQuestion}>Add Question</button>

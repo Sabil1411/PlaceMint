@@ -61,7 +61,7 @@ export default function Feedback() {
 				<h1 className="text-xl font-semibold">Company Feedback</h1>
 				<p className="text-sm text-gray-600">Share structured feedback to help students improve.</p>
 				<div className="card p-4 space-y-3">
-					<select className="border rounded p-2 w-full" value={selectedStudent} onChange={e=>setSelectedStudent(e.target.value)}>
+					<select className="input-field" value={selectedStudent} onChange={e=>setSelectedStudent(e.target.value)}>
 						<option value="">Select approved application</option>
 						{eligibleApps.map(a=>{
 							const job = jobs.find(j=>j.id===a.jobId)
@@ -74,11 +74,11 @@ export default function Feedback() {
 					<div className="grid md:grid-cols-2 gap-3">
 						<label className="block">
 							<span className="text-sm text-gray-600">Score (1-10)</span>
-							<input type="number" min="1" max="10" value={score} onChange={e=>setScore(Number(e.target.value))} className="border rounded p-2 w-full" />
+							<input type="number" min="1" max="10" value={score} onChange={e=>setScore(Number(e.target.value))} className="input-field" />
 						</label>
 						<label className="block md:col-span-2">
 							<span className="text-sm text-gray-600">Feedback</span>
-							<textarea className="border rounded p-2 w-full" rows="3" value={comment} onChange={e=>setComment(e.target.value)} />
+							<textarea className="input-field" rows="3" value={comment} onChange={e=>setComment(e.target.value)} />
 						</label>
 					</div>
 					<button

@@ -9,8 +9,7 @@ export default function Login() {
 	const navigate = useNavigate()
 	const signup = useAuthStore(s => s.signup)
 	const loginWithPassword = useAuthStore(s => s.loginWithPassword)
-	const loginPredefined = useAuthStore(s => s.loginPredefined)
-    const profiles = useDataStore(s => s.profiles)
+	const profiles = useDataStore(s => s.profiles)
 	const [mode, setMode] = useState('login') // 'login' | 'signup'
 	const [role, setRole] = useState('student')
 	const [name, setName] = useState('')
@@ -18,21 +17,23 @@ export default function Login() {
 	const [password, setPassword] = useState('')
 	const [department, setDepartment] = useState('')
 	const [error, setError] = useState('')
+	const normalizedEmail = email.trim().toLowerCase()
+	const emailType = normalizedEmail === 'placement@placemint.com' ? 'placement' : normalizedEmail === 'company@placemint.com' ? 'company' : 'student'
+	const isLoginMode = mode === 'login'
 
-	async function handleSubmit(e) {
-		e.preventDefault()
+	async function authenticate(currentMode = mode, currentRole = role) {
 		setError('')
 		if (!email.trim() || !password) {
 			setError('Please fill all fields')
 			return
 		}
 		try {
-			if (mode==='signup') {
-				await signup({ email, password, name, role, department })
+			if (currentMode === 'signup') {
+				await signup({ email, password, name, role: currentRole, department })
 			} else {
 				await loginWithPassword({ email, password })
 			}
-			if ((mode==='signup' && role==='student') || (role==='student' && name && !profiles.find(p=>p.name?.toLowerCase()===name.toLowerCase()))) {
+			if ((currentMode === 'signup' && currentRole === 'student') || (currentRole === 'student' && name && !profiles.find(p=>p.name?.toLowerCase()===name.toLowerCase()))) {
 				navigate('/profile')
 			} else {
 				navigate('/')
@@ -42,24 +43,30 @@ export default function Login() {
 		}
 	}
 
-	async function handlePredefinedLogin(type) {
-		setError('')
-		try {
-			await loginPredefined(type)
-			navigate('/')
-		} catch (err) {
-			setError(err.message || 'Unable to login')
+	async function handleSubmit(e) {
+		e.preventDefault()
+		await authenticate()
+	}
+
+	async function handleRoleLogin(type) {
+		if (emailType !== type) {
+			setError(`Enter the ${type} email to use this login.`)
+			return
 		}
+		setMode('login')
+		setRole(type)
+		await authenticate('login', type)
 	}
 
 	return (
-		<div className="max-w-md mx-auto bg-cleanWhite text-forest p-2 rounded">
-			<h1 className="text-2xl font-semibold mb-4">{mode==='signup' ? 'Sign up' : 'Login'}</h1>
-			<form onSubmit={handleSubmit} className="space-y-4 card p-4 text-forest">
-				<div className="flex gap-2">
-					<button type="button" className={`px-3 py-1 rounded border text-sm font-medium transition-colors ${mode==='login' ? 'bg-freshLime/15 text-forest border-freshLime/40' : 'bg-cleanWhite text-forest/80 border-forest/20'}`} onClick={()=>setMode('login')}>Login</button>
-					<button type="button" className={`px-3 py-1 rounded border text-sm font-medium transition-colors ${mode==='signup' ? 'bg-freshLime/15 text-forest border-freshLime/40' : 'bg-cleanWhite text-forest/80 border-forest/20'}`} onClick={()=>setMode('signup')}>Sign up</button>
-				</div>
+		<div className="min-h-screen bg-cleanWhite px-4 py-10 flex items-center justify-center">
+			<div className="w-full max-w-md bg-cleanWhite text-forest rounded shadow-lg">
+				<h1 className="text-2xl font-semibold mb-4 px-4 pt-4 text-center ">{mode==='signup' ? 'Sign up' : 'Login'}</h1>
+				<form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 card p-4 text-forest">
+					<div className="flex flex-wrap gap-2">
+						<button type="button" className={`px-3 py-1 rounded border text-sm font-medium transition-colors ${mode==='login' ? 'bg-freshLime/15 text-forest border-freshLime/40' : 'bg-cleanWhite text-forest/80 border-forest/20'}`} onClick={()=>setMode('login')}>Login</button>
+						<button type="button" className={`px-3 py-1 rounded border text-sm font-medium transition-colors ${mode==='signup' ? 'bg-freshLime/15 text-forest border-freshLime/40' : 'bg-cleanWhite text-forest/80 border-forest/20'}`} onClick={()=>setMode('signup')}>Sign up</button>
+					</div>
 				{mode==='signup' && (
 					<label className="block">
 						<span className="text-sm text-forest">Role</span>
@@ -85,25 +92,34 @@ export default function Login() {
 				</label>
 				{error && <div className="text-sm text-red-600">{error}</div>}
 				<div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-					<button className="btn flex-1" type="submit">{mode==='signup' ? 'Create account' : 'Login'}</button>
+					<button
+						className="btn flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
+						type="submit"
+						disabled={isLoginMode && emailType !== 'student'}
+					>
+						{mode==='signup' ? 'Create account' : 'Login'}
+					</button>
 					<div className="flex flex-col gap-2 sm:flex-row sm:flex-1">
 						<button
 							type="button"
-							className="btn-outline flex-1"
-							onClick={()=>handlePredefinedLogin('placement')}
+							className="btn flex-1 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+							disabled={emailType !== 'placement'}
+							onClick={()=>handleRoleLogin('placement')}
 						>
-							Placement Login
+							Placement
 						</button>
 						<button
 							type="button"
-							className="btn-outline flex-1"
-							onClick={()=>handlePredefinedLogin('company')}
+							className="btn flex-1 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+							disabled={emailType !== 'company'}
+							onClick={()=>handleRoleLogin('company')}
 						>
-							Company Login
+							Company
 						</button>
 					</div>
 				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	)
 }

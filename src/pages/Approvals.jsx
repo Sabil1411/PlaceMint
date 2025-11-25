@@ -30,29 +30,7 @@ export default function Approvals() {
                     </div>
                 </div>
             )}
-            {user?.role==='placement' && (
-                <div className="card p-4 space-y-3">
-                    <h2 className="text-lg font-semibold">Add Recruiter</h2>
-                    <form onSubmit={(e)=>{
-                        e.preventDefault()
-                        const formData = new FormData(e.target)
-                        const recruiter = {
-                            name: formData.get('name'),
-                            email: formData.get('email'),
-                            role: 'recruiter'
-                        }
-                        users.push(recruiter)
-                        alert('Recruiter added successfully')
-                        e.target.reset()
-                    }}>
-                        <div className="grid gap-2">
-                            <input name="name" className="border rounded p-2" placeholder="Recruiter Name" required />
-                            <input name="email" type="email" className="border rounded p-2" placeholder="Recruiter Email" required />
-                            <button type="submit" className="btn">Add Recruiter</button>
-                        </div>
-                    </form>
-                </div>
-            )}
+            
             {user?.role==='placement' && (
                 <div className="card p-4 space-y-2">
                     <div className="font-semibold">Approved Applications</div>

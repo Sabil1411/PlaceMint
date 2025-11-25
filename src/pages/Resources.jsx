@@ -25,9 +25,9 @@ export default function Resources() {
                 <form onSubmit={onAdd} className="border rounded p-4 space-y-3">
                     <div className="font-semibold">Add Resource</div>
                     <div className="grid md:grid-cols-3 gap-3">
-                        <input className="input" placeholder="Title" value={draft.title} onChange={e=>setDraft(v=>({...v, title: e.target.value}))} />
-                        <input className="input" placeholder="URL" value={draft.url} onChange={e=>setDraft(v=>({...v, url: e.target.value}))} />
-                        <select className="input" value={draft.category} onChange={e=>setDraft(v=>({...v, category: e.target.value}))}>
+                        <input className="input-field" placeholder="Title" value={draft.title} onChange={e=>setDraft(v=>({...v, title: e.target.value}))} />
+                        <input className="input-field" placeholder="URL" value={draft.url} onChange={e=>setDraft(v=>({...v, url: e.target.value}))} />
+                        <select className="input-field" value={draft.category} onChange={e=>setDraft(v=>({...v, category: e.target.value}))}>
                             <option value="aptitude">Aptitude</option>
                             <option value="interview">Interview</option>
                             <option value="resume">Resume</option>

@@ -157,7 +157,7 @@ export default function Dashboard() {
             )}
 
             {/* Placement quick actions */}
-            {user && user.role === 'placement' && (
+            {/*user && user.role === 'placement' && (
                 <section className="space-y-3 py-[30px]">
                     <h3 className="font-semibold">Placement Control Center</h3>
                     <div className="grid md:grid-cols-3 gap-4">
@@ -180,7 +180,7 @@ export default function Dashboard() {
                         ))}
                     </div>
                 </section>
-            )}
+            )*/}
         </div>
     )
 }
