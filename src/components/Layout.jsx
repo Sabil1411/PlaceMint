@@ -6,7 +6,8 @@ import logo from '../assets/logo.png'
 import facebookLogo from '../assets/facebook.png'
 import instagramLogo from '../assets/instagram.png'
 import linkedinLogo from '../assets/linkedin.png'
-import twitterLogo from '../assets/x_logo.png'	
+import twitterLogo from '../assets/x_logo.png'
+
 
 export default function Layout({ children }) {
 	const navigate = useNavigate()

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth'
 import { useDataStore, matchScore } from '../store/data'
+import diagram from '../assets/diagram.png'	
 
 export default function Dashboard() {
     const navigate = useNavigate()
@@ -101,7 +102,7 @@ export default function Dashboard() {
                     ))}
                 </div>
                 <div className="flex justify-center mt-8">
-                    <img src="/src/assets/diagram.png" alt="Campus Portal Workflow" style={{maxWidth:'100%',height:'auto'}} />
+                    <img src={diagram} alt="Campus Portal Workflow" style={{maxWidth:'100%',height:'auto'}} />
                 </div>
             </section>
 
