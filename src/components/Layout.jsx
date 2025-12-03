@@ -131,13 +131,13 @@ export default function Layout({ children }) {
 					<div>
 						<div className="font-semibold mb-2">Follow us</div>
 						<div className="flex gap-3">
-							<a className="transition-colors hover:text-tealAccent" href="#" aria-label="Instagram">
+							<a className="transition-colors hover:text-tealAccent" href="https://www.instagram.com/_placemint_?igsh=ODVvNmdheGZ2ZTFo" aria-label="Instagram">
 								<img src={instagramLogo} alt="Instagram" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
 							<a className="transition-colors hover:text-tealAccent" href="#" aria-label="Facebook">
 								<img src={facebookLogo}	 alt="Facebook" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
-							<a className="transition-colors hover:text-tealAccent" href="https://www.linkedin.com/in/pranav-joshi-485a64289/" aria-label="LinkedIn">
+							<a className="transition-colors hover:text-tealAccent" href="https://www.linkedin.com/company/place-mint/?viewAsMember=true" aria-label="LinkedIn">
 								<img src={linkedinLogo} alt="LinkedIn" style={{height:'24px',width:'24px',display:'inline'}} />
 							</a>
 							<a className="transition-colors hover:text-tealAccent" href="#" aria-label="Twitter">
