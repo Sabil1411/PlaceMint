@@ -148,7 +148,7 @@ export default function Layout({ children }) {
 					<div>
 						<div className="font-semibold mb-1"> Contact us</div>
 						<div className="text-cleanWhite/80">+91 12345 67890</div>
-						<div className="text-cleanWhite/80">support@placemint.com</div>
+						<div className="text-cleanWhite/80" href="placemin247@gmail.com">placemin247@gmail.com</div>
 					</div>
 				</div>
 			</footer>
