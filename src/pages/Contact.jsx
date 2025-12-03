@@ -25,7 +25,7 @@ export default function Contact() {
             <h1 className="text-xl font-semibold" style={{ color: colors.forest }}>Contact</h1>
 
             <div className="card p-4 mb-4" style={{ borderLeft: `4px solid ${colors.aqua}`, backgroundColor: '#F9F9F9' }}>
-                <div>Email: support@placemint.com</div>
+                <div href="mailto:placemint247@gmail.com">Email: placemint247@gmail.com</div>
                 <div>Phone: +91 12345 67890</div>
             </div>
 
